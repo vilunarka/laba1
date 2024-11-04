@@ -29,8 +29,6 @@ def count_letters(a):
         simb[i] = ([simb[i], frecuency[i]])
     return [simb]
 
-# TODO Напишите функцию calculate_frequency
-
 main_str = """
 У лукоморья дуб зелёный;
 Златая цепь на дубе том:
