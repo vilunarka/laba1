@@ -1,6 +1,6 @@
-def found(a, b):
-    for i in range(len(a)):
-        if(a[i] == b):
+def found(items, found):
+    for i in range(len(items)):
+        if(items[i] == found):
             return i
     return None
 items_list = ['яблоко', 'банан', 'апельсин', 'груша', 'киви', 'банан']
