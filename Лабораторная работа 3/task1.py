@@ -1,4 +1,3 @@
-# TODO Напишите функцию для поиска индекса товара
 def found(a, b):
     for i in range(len(a)):
         if(a[i] == b):
