@@ -1,33 +1,16 @@
-# TODO  Напишите функцию count_letters
-
-def count_letters(a):
-    c = ""
-    simb = []
-    frecuency = []
-
-#Откидывание из исходного текста все символов, кроме букв
-#Замена заглавных букв на строчные
-    for i in a:
-        if (ord(i) >= ord("А")) and (ord(i) <= ord("я")):
-            if ord(i) <= ord("Я"):
-                c += chr(ord(i) + 32)
-            else:
-                c += i
-
-#Составление списков символов и их количеств в тексте
-    for i in range (0, 32):
-        simb.append(chr(i+1072))
-        frecuency.append(c.count(chr(i+1072)))
-
-#Подсчет частоты
-    for i in range(len(frecuency)):
-        frecuency[i] = frecuency[i]/(len(c))
-        frecuency[i] = round(frecuency[i], 2)
-
-#Объединение двух массивов в один для удобного хранения данных
+import json
+def count_letters(text1):
+    text1 = text1.lower()
+    symbols = ''.join(text1.split())
+    letters = ''.join(c for c in symbols if c.isalpha())
+    return letters
+    
+def calculate_frequency(symbols):
+    letters_dict = {}
     for i in range(32):
-        simb[i] = ([simb[i], frecuency[i]])
-    return [simb]
+        frequency = symbols.count(chr(i + ord('а')))/len(symbols)
+        letters_dict[chr(i + ord('а'))] = round(frequency,2)
+    return letters_dict
 
 main_str = """
 У лукоморья дуб зелёный;
@@ -64,12 +47,7 @@ main_str = """
 Под ним сидел, и кот учёный
 Свои мне сказки говорил.
 """
-
-
-# TODO Распечатайте в столбик букву и её частоту в тексте
-
-a = count_letters(main_str)
-a = a[0]    #Сброс дополнительного измерения массива, образовавшегося после работы функции
-for i in a:
-    print(i[0], end = ": ")
-    print(i[1])
+letters_main = count_letters(main_str)
+dict = calculate_frequency(letters_main)
+for i in range(32):
+    print(chr(i + ord('а')),':',dict[chr(i + ord('а'))])
