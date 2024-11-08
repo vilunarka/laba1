@@ -1,16 +1,20 @@
-import json
 def count_letters(text1):
     text1 = text1.lower()
-    symbols = ''.join(text1.split())
-    letters = ''.join(c for c in symbols if c.isalpha())
+    remade_str = ''.join(c for c in text1 if c.isalpha())
+    letters = {}
+    for index in range(32):
+        letters[chr(index + ord('а'))] = remade_str.count(chr(index + ord('а')))
     return letters
-    
+
 def calculate_frequency(symbols):
-    letters_dict = {}
-    for i in range(32):
-        frequency = symbols.count(chr(i + ord('а')))/len(symbols)
-        letters_dict[chr(i + ord('а'))] = round(frequency,2)
-    return letters_dict
+    letters_frequency = {}
+    total = 0
+    for index in range(32):
+        total += symbols[chr(index + ord('а'))]
+    for index in range(32):
+        frequency = symbols[chr(index + ord('а'))] / total
+        letters_frequency[chr(index + ord('а'))] = frequency
+    return letters_frequency
 
 main_str = """
 У лукоморья дуб зелёный;
@@ -49,5 +53,5 @@ main_str = """
 """
 letters_main = count_letters(main_str)
 dict = calculate_frequency(letters_main)
-for i in range(32):
-    print(chr(i + ord('а')),':',dict[chr(i + ord('а'))])
+for index in range(32):
+    print(chr(index + ord('а')), ':', round(dict[chr(index + ord('а'))], 2))
